@@ -20,6 +20,7 @@ resource "aws_subnet" "public_subnets" {
   count = 3
   cidr_block = "10.0.1${count.index}.0/24"
   vpc_id = aws_vpc.wordpress-vpc.id
+  availability_zone = "us-east-1${element(["a", "b", "c"], count.index)}"
   tags = {
     Name = "public-subnet-${count.index}"
   }
